@@ -152,8 +152,9 @@ jobs:
 
       - name: Install Haxe dependencies
         run: |
-          curl --output ../hxcpp-4.3.143.zip --location https://github.com/HaxeFoundation/hxcpp/releases/download/v4.3.143/hxcpp-4.3.143.zip
-          haxelib install ../hxcpp-4.3.143.zip --quiet
+          haxelib git libhxcpp https://github.com/openfl/libhxcpp --quiet
+          haxelib run libhxcpp setup
+          haxe --cwd "$(haxelib libpath libhxcpp)/tools/hxcpp" compile.hxml
           haxelib install format --quiet
           haxelib install hxp --quiet
           haxelib install utest --quiet
